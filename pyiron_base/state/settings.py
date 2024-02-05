@@ -72,6 +72,8 @@ class Settings(metaclass=Singleton):
         user / USER / PYIRONUSER (str):
         resource_paths / RESOURCE_PATHS / PYIRONRESOURCEPATHS (list):
         project_paths / PROJECT_PATHS / PYIRONPROJECTPATHS (list):
+        staging_path / STAGING_PATH / PYIRONSTAGINGPATH (str):
+        shared_path / SHARED_PATH / PYIRONSHAREDPATH (str):
         connection_timeout / CONNECTION_TIMEOUT / PYIRONCONNECTIONTIMEOUT (int):
         sql_connection_string / CONNECTION / PYIRONSQLCONNECTIONSTRING (str):
         sql_table_name / JOB_TABLE / PYIRONSQLTABLENAME (str):
@@ -177,6 +179,8 @@ class Settings(metaclass=Singleton):
                 "user": "pyiron",
                 "resource_paths": [],
                 "project_paths": [],
+                "staging_path": None,
+                "shared_path": None,
                 "connection_timeout": 60,
                 "sql_connection_string": None,
                 "sql_table_name": "jobs_pyiron",
@@ -203,6 +207,8 @@ class Settings(metaclass=Singleton):
             "PYIRONUSER": "user",
             "PYIRONRESOURCEPATHS": "resource_paths",
             "PYIRONPROJECTPATHS": "project_paths",
+            "PYIRONSTAGINGPATH": "staging_path",
+            "PYIRONSHAREDPATH": "shared_path",
             "PYIRONCONNECTIONTIMEOUT": "connection_timeout",
             "PYIRONSQLCONNECTIONSTRING": "sql_connection_string",
             "PYIRONSQLTABLENAME": "sql_table_name",
@@ -228,6 +234,8 @@ class Settings(metaclass=Singleton):
             "USER": "user",
             "RESOURCE_PATHS": "resource_paths",
             "PROJECT_PATHS": "project_paths",
+            "STAGING_PATH": "staging_path",
+            "SHARED_PATH": "shared_path",
             "TOP_LEVEL_DIRS": "project_paths",  # For backwards compatibility
             "CONNECTION_TIMEOUT": "connection_timeout",
             "CONNECTION": "sql_connection_string",
@@ -306,6 +314,14 @@ class Settings(metaclass=Singleton):
             list: path of paths
         """
         return self._configuration["resource_paths"]
+
+    @property
+    def staging_path(self) -> str:
+        return self._configuration["staging_path"]
+
+    @property
+    def shared_path(self) -> str:
+        return self._configuration["shared_path"]
 
     @property
     def _valid_sql_types(self) -> List[str]:
