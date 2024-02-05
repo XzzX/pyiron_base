@@ -8,7 +8,7 @@ import argparse
 import os
 import warnings
 
-from pyiron_base.cli import ls, rm, install, reloadfile, wrapper
+from pyiron_base.cli import ls, rm, install, reloadfile, wrapper, commit
 
 __author__ = "Marvin Poul"
 __copyright__ = (
@@ -27,6 +27,7 @@ cli_modules = {
     "install": install,
     "reloadfile": reloadfile,
     "wrapper": wrapper,
+    "commit": commit,
 }
 
 
