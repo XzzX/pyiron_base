@@ -11,14 +11,11 @@ from pyiron_base.project.generic import Project
 
 def register(parser):
     parser.add_argument(
-        "project", default=".", nargs="?", help="path to pyiron project"
+        "project", help="path to pyiron project"
     )
-    parser.add_argument(
-        "-r", "--recursive", action="store_true", help="recurse into subprojects"
-    )
-
 
 def main(args):
     pr = Project(args.project)
-    staging_project = Project(pr.state.staging_path + pr.name)
-    pr.move_to(staging_project)
+    for job in pr.iter_jobs():
+        dst = Project(f'{pr.state.staging_path}/{job.db_entry()["username"]}/{job.db_entry()["project"]}'.replace('//', '/'))
+        job.move_to(dst)
